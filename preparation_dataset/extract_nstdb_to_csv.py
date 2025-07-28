@@ -1,4 +1,3 @@
-#install library pip install wfdb
 import wfdb
 import pandas as pd
 
@@ -18,12 +17,8 @@ for noise_type, label in noise_class.items():
     
     df['type'] = noise_type
     
-    
     all_data.append(df)
 
-
 combined_df = pd.concat(all_data, ignore_index=True)
-
-
 combined_df.to_csv('nstdb.csv', index=False)
 
