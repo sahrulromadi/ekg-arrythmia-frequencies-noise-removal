@@ -1,14 +1,81 @@
+# 📉 Denoising ECG Signals Using Conv1D-Based Autoencoder and Wavelet-MLP
 
-# Utilization of a Denoising Convolutional Autoencoder Model Based on Conv1D for Noise Removal in Electrocardiogram (ECG) Signals
+This project explores the application of a denoising **Convolutional Autoencoder (CAE)** using **1D convolutional layers (Conv1D)** for removing noise from **electrocardiogram (ECG)** signals.
 
-This study focuses on the application of a Denoising Convolutional Autoencoder (DCAE) using one-dimensional convolutional layers (Conv1D) to effectively remove noise from electrocardiogram (ECG) signals.
-ECG signals, which are critical for diagnosing heart conditions, are often contaminated by various types of noise such as baseline wander(bw), muscle artifacts(ma), and electrode motion(em) interference. 
+---
+
+## 🧠 Background
+
+ECG signals are essential for diagnosing cardiac abnormalities but are often affected by various types of noise, such as:
+
+- **Baseline Wander (BW)**
+- **Muscle Artifact (MA)**
+- **Electrode Motion (EM)**
+
 These disturbances can hinder accurate interpretation and analysis.
 
-This research explores the use of a Conv1D-based Denoising Convolutional Autoencoder (DCAE) for noise removal in electrocardiogram (ECG) signals, focusing on signal reconstruction in the time domain. The model is designed to learn the mapping between noisy ECG signals and their clean counterparts, enabling effective denoising with minimal reconstruction error.
-In addition to time-domain approaches like the DCAE, hybrid models such as Wavelet-MLP, which operate in the wavelet coefficient domain, are also considered. These models extract key features from decomposed signals and use machine learning to reconstruct the clean signal.
-Both methods—DCAE and Wavelet-MLP—aim to accurately recover the original ECG waveform from signals contaminated by noise such as baseline wander(bw), muscle artifacts(ma), and electrode motion(em).
-By comparing the performance of time-domain and coefficient-domain denoising techniques, this study contributes to the development of reliable and efficient signal processing methods that improve the quality of ECG signals, ultimately supporting better clinical interpretation and diagnosis.
+---
 
+## 🧰 Methods
 
+### ✅ Convolutional Autoencoder (CAE)
 
+- Operates in the **time domain**
+- Uses Conv1D layers to reconstruct clean signals
+- Learns a mapping from noisy to clean ECG signals
+
+---
+
+## 📊 Experiments & Results
+
+Two types of composite noise datasets (Noise 1 and Noise 2) were tested on two ECG channels (MLII and V5). The following metrics were used for evaluation:
+
+- **RMSE (Root Mean Square Error)**
+- **PRD (Percentage Root-mean-square Difference)**
+
+### 🔬 Channel MLII vs Noise 1
+
+| Noise Type       | Avg. RMSE | Avg. PRD (%) |
+| ---------------- | --------- | ------------ |
+| Baseline Wander  | 0.0324    | 18.20%       |
+| Muscle Artifact  | 0.0360    | 20.27%       |
+| Electrode Motion | 0.0396    | 22.11%       |
+
+### 🔬 Channel MLII vs Noise 2
+
+| Noise Type       | Avg. RMSE | Avg. PRD (%) |
+| ---------------- | --------- | ------------ |
+| Baseline Wander  | 0.0365    | 20.29%       |
+| Muscle Artifact  | 0.0359    | 20.09%       |
+| Electrode Motion | 0.0410    | 22.78%       |
+
+### 🔬 Channel V5 vs Noise 1
+
+| Noise Type       | Avg. RMSE | Avg. PRD (%) |
+| ---------------- | --------- | ------------ |
+| Baseline Wander  | 0.0411    | 17.75%       |
+| Muscle Artifact  | 0.0457    | 20.23%       |
+| Electrode Motion | 0.0501    | 21.55%       |
+
+### 🔬 Channel V5 vs Noise 2
+
+| Noise Type       | Avg. RMSE | Avg. PRD (%) |
+| ---------------- | --------- | ------------ |
+| Baseline Wander  | 0.0421    | 18.08%       |
+| Muscle Artifact  | 0.0410    | 17.88%       |
+| Electrode Motion | 0.0482    | 20.73%       |
+
+---
+
+## 🧾 Conclusion
+
+The **Denoising Convolutional Autoencoder (CAE)** based on **Conv1D** has proven effective in removing noise from ECG signals while preserving essential physiological waveform structures.
+
+With its **end-to-end architecture**, **high computational efficiency**, and operation purely in the **time domain**—without requiring external transformations—the model is well-suited for deployment in **real-time** or **embedded systems**.
+
+The model's effectiveness varies depending on the **type of noise** and the **ECG channel configuration**:
+
+- **Noise2** type was relatively easier to denoise.
+- However, **Muscle Artifact** and **Electrode Motion** noise types remain more challenging and may require additional or hybrid approaches to achieve optimal performance.
+
+This study highlights the CAE model's practical potential while also identifying areas for future enhancement in robust ECG signal denoising.
